@@ -1,37 +1,66 @@
-## Welcome to GitHub Pages
+## Sains Data
+R adalah sebuah program komputasi statistika dan grafis (R Core Team 2020). Saat ini R sudah dikenal luas sebagai salah satu powerful software untuk analisis data dan Data Science. Tentu saja selain R masih banyak software lain yang juga sering digunakan untuk analisis data, misalnya Python. R dibuat dengan tujuan awal untuk komputasi statistika dan grafis. Awalnya digunakan oleh para ilmuwan dalam riset mereka dan para akademisi. Namun seiring perkembangan teknologi, cakupan kemampuan R sebagai bahasa pemrograman menjadi jauh lebih luas. Anda dapat membuat dan update report rutin menggunakan R Markdown. Anda juga dapat membuat aplikasi web interaktif atau dashboard dengan package shiny. Karena R didesain untuk analisis data dan perkembangan serta kemampuannya mencakup hampir semua lini dalam analisis data, tidak heran saat ini banyak analis data dan ilmuwan data (data scientist) menggunakan R untuk menyelesaikan berbagai masalah mereka. 
 
-You can use the [editor on GitHub](https://github.com/DitaAisha/ditaaisha.io/edit/gh-pages/index.md) to maintain and preview the content for your website in Markdown files.
+Disini saya mau menjelaskan bagaimana membuat tampilan di RPubs dengan menggunakan R. Berikut code yang digunakan untuk Data Visualisasi.
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
-
-### Markdown
-
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
-
-```markdown
-Syntax highlighted code block
-
-# Header 1
-## Header 2
-### Header 3
-
-- Bulleted
-- List
-
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
+```{r}
+library(tidyverse)
+#> ── Attaching packages ─────────────────────────────────────── tidyverse 1.3.0 ──
+#> ✔ ggplot2 3.3.2     ✔ purrr   0.3.4
+#> ✔ tibble  3.0.3     ✔ dplyr   1.0.2
+#> ✔ tidyr   1.1.2     ✔ stringr 1.4.0
+#> ✔ readr   1.4.0     ✔ forcats 0.5.0
+#> ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+#> ✖ dplyr::filter() masks stats::filter()
+#> ✖ dplyr::lag()    masks stats::lag()
 ```
 
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
+```{r}
+mpg
+#> # A tibble: 234 x 11
+#>   manufacturer model displ  year   cyl trans      drv     cty   hwy fl    class 
+#>   <chr>        <chr> <dbl> <int> <int> <chr>      <chr> <int> <int> <chr> <chr> 
+#> 1 audi         a4      1.8  1999     4 auto(l5)   f        18    29 p     compa…
+#> 2 audi         a4      1.8  1999     4 manual(m5) f        21    29 p     compa…
+#> 3 audi         a4      2    2008     4 manual(m6) f        20    31 p     compa…
+#> 4 audi         a4      2    2008     4 auto(av)   f        21    30 p     compa…
+#> 5 audi         a4      2.8  1999     6 auto(l5)   f        16    26 p     compa…
+#> 6 audi         a4      2.8  1999     6 manual(m5) f        18    26 p     compa…
+#> # … with 228 more rows
 
-### Jekyll Themes
+```
 
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/DitaAisha/ditaaisha.io/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
+```{r}
+ggplot(data = mpg) + 
+  geom_point(mapping = aes(x = displ, y = hwy))
+```
 
-### Support or Contact
+```{r}
+  
+  ggplot(data = mpg) + 
+  geom_point(mapping = aes(x = displ, y = hwy, color = class))
+ ```
+ 
 
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://support.github.com/contact) and we’ll help you sort it out.
+```{r}
+
+  ggplot(data = mpg) + 
+  geom_point(mapping = aes(x = displ, y = hwy, size = class))
+#> Warning: Using size for a discrete variable is not advised.
+```
+
+
+```{r}
+# Left
+ggplot(data = mpg) + 
+  geom_point(mapping = aes(x = displ, y = hwy, alpha = class))
+
+# Right
+ggplot(data = mpg) + 
+  geom_point(mapping = aes(x = displ, y = hwy, shape = class))
+  ```
+  
+  Untuk tampilan RPubs bila dilihat di  [PBups](https://rpubs.com/DitaAisha98) 
+
+Semoga bermanfaat.
+
